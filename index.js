@@ -5,6 +5,8 @@ var app = express();
 var bodyParser = require('body-parser');
 const axios = require('axios')
 
+app.set('port', (process.env.PORT || 5000));
+
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({
   extended: true
@@ -42,6 +44,6 @@ app.post('/new-message', function(req, res) {
 });
 
 // Finally, start our server
-app.listen(3000, function() {
-  console.log('Telegram app listening on port 3000!');
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
 });
